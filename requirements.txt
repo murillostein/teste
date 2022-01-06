@@ -1,5 +1,5 @@
+easyocr==1.4
 opencv-python-headless
-PIL
 numpy
+pandas
 streamlit
-easyocr
