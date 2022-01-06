@@ -1,5 +1,5 @@
-numpy==1.19.4
-pandas==1.2.4
-pickleshare==0.7.5
+opencv-python-headless
+PIL
+numpy
 streamlit
-opencv-python
+easyocr

@@ -3,10 +3,10 @@ import numpy as np
 import streamlit as st
 import PIL
 import cv2
-# import easyocr
+import easyocr
 import tempfile
 
-#reader = easyocr.Reader(['en'], gpu=True)
+reader = easyocr.Reader(['en'], gpu=True)
 
 st.title('Identificação de Códigos')
 
@@ -14,10 +14,6 @@ st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
 
 
 video_file = st.file_uploader("Anexe um vídeo")
-
-
-j =0
-
 
 
 if st.button('Gerar vídeo'):
