@@ -1,5 +1,4 @@
-easyocr==1.4
-opencv-python-headless
+easyocr
+torch
 numpy
-pandas
 streamlit
