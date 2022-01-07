@@ -58,6 +58,7 @@ if video_file is not None:
 
         # input_image = Image.open(frame)
         
+        frame_cp = frame.copy()
 
         #cv2_imshow(frame)
         
@@ -65,7 +66,7 @@ if video_file is not None:
             break
         # st.write("nao breakou")
         # image = Image.open(frame)
-        resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
+        resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
         
         # st.write("deu boa com em ler resultados")
         
@@ -86,9 +87,9 @@ if video_file is not None:
                 # cleanup the txt and draw the box surrounding the text along
                 # with the OCR'd text itself
                 #text = cleanup_text(text)
-                cv2.rectangle(frame, tl, br, (0, 255, 0), 2)
+                cv2.rectangle(frame_cp, tl, br, (0, 255, 0), 2)
                 #st.write('fez retangulo')
-                cv2.putText(frame, text, (tl[0], tl[1] - 10),
+                cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                 # 
                 
@@ -99,7 +100,7 @@ if video_file is not None:
             
             break
     st.write("output frame")
-    st_empty.image(frame)
+    st_empty.image(frame_cp)
         #output_video.write(frame)
 
     #st_video.video(output_video)
