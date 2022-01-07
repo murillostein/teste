@@ -37,7 +37,7 @@ if video_file is not None:
     tfile = tempfile.NamedTemporaryFile(delete=False)
     tfile.write(video_file.read())
 
-    st.write("Deu boa com tfile")
+    # st.write("Deu boa com tfile")
     vid_capture = cv2.VideoCapture(tfile.name)
 
     #video_bytes = video_file.read()
@@ -54,22 +54,24 @@ if video_file is not None:
 
         conectado, frame = vid_capture.read()
 
-        st.write("deu boa com vid_capture.read")
+        # st.write("deu boa com vid_capture.read")
 
         # input_image = Image.open(frame)
         
 
         #cv2_imshow(frame)
-        st.image(frame)
+        
         if not conectado:
             break
-        st.write("nao breakou")
+        # st.write("nao breakou")
         # image = Image.open(frame)
         resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
         
-        st.write("deu boa com em ler resultados")
+        # st.write("deu boa com em ler resultados")
         
         if resultados != []:
+            st.write("input frame")
+            st.image(frame)
             for (bbox, text, prob) in resultados:
 
                 print("{:.4f}: {}".format(prob, text))
@@ -94,9 +96,9 @@ if video_file is not None:
                 # cv2_imshow(frame)
                 
             #df_previsoes = df_previsoes.append(df_texts)
-
-                st_empty.image(frame)
-                break
+            st.write("output frame")
+            st_empty.image(frame)
+            break
 
         #output_video.write(frame)
 
