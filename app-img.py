@@ -20,11 +20,11 @@ st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
 img = st.file_uploader("Anexe uma imagem")
 
 st_empty = st.empty()
-
+st.write("deu boa com fileupload")
 if img is not None:    
 
     input_image = Image.open(img)
-
+    st.write("deu boa com PIL")
     # image = Image.open(frame)
     resultados = reader.readtext(np.array(input_image))
     
