@@ -69,7 +69,7 @@ if video_file is not None:
         
         st.write("deu boa com em ler resultados")
         
-        if resultados != None:
+        if resultados != []:
             for (bbox, text, prob) in resultados:
 
                 print("{:.4f}: {}".format(prob, text))
