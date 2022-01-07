@@ -1,4 +1,4 @@
 streamlit
-easyocr
-numpy
-Pillow
+easyocr==1.4.1
+numpy==1.19.5
+Pillow==7.1.2
