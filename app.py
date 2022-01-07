@@ -3,15 +3,16 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 import cv2
-import easyocr
+import easyocr as ocr
 import tempfile
 
-def load_model():
-    return ocr.Reader(['en'], model_storage_directory='.')
+def load_model(lang):
+    return ocr.Reader([lang], model_storage_directory='.')
 
 
 # reader = easyocr.Reader(['en'])
-reader = load_model()
+lang = 'en'
+reader = load_model(lang)
 st.title('Identificação de Códigos')
 
 st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
