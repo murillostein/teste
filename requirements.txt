@@ -1,6 +1,4 @@
 easyocr
 torch
-opencv-python-headless
 numpy
 streamlit
-tempfile
