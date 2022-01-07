@@ -6,7 +6,7 @@ import cv2
 import easyocr
 import tempfile
 
-reader = easyocr.Reader(['en'], gpu=True)
+reader = easyocr.Reader(['en'])
 
 st.title('Identificação de Códigos')
 
@@ -53,7 +53,7 @@ if video_file is not None:
         #cv2_imshow(frame)
         if not conectado:
             break
-        
+        st.write("nao breakou")
         resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0],min_size=110)
         
         st.write("deu boa com em ler resultados")
@@ -82,7 +82,7 @@ if video_file is not None:
             # cv2_imshow(frame)
             
         #df_previsoes = df_previsoes.append(df_texts)
-        
+
         st_empty.image(frame)
 
         #output_video.write(frame)
