@@ -33,7 +33,7 @@ if video_file is not None:
     tfile = tempfile.NamedTemporaryFile(delete=False)
     tfile.write(video_file.read())
 
-    st.write("Deu boa")
+    st.write("Deu boa com tfile")
     vid_capture = cv2.VideoCapture(tfile.name)
 
     #video_bytes = video_file.read()
@@ -46,14 +46,18 @@ if video_file is not None:
     while True:
         print(i)
         i += 1
+
         conectado, frame = vid_capture.read()
+
+        st.write("deu boa com vid_capture.read")
         #cv2_imshow(frame)
         if not conectado:
             break
         
         resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0],min_size=110)
         
-
+        st.write("deu boa com em ler resultados")
+        st.write(resultados)
         for (bbox, text, prob) in resultados:
 
             print("{:.4f}: {}".format(prob, text))
@@ -69,12 +73,16 @@ if video_file is not None:
             # with the OCR'd text itself
             #text = cleanup_text(text)
             cv2.rectangle(frame, tl, br, (0, 255, 0), 2)
+            st.write('fez retangulo')
             cv2.putText(frame, text, (tl[0], tl[1] - 10),
             cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
             # 
+            
+            st.write('fez texto')
             # cv2_imshow(frame)
             
         #df_previsoes = df_previsoes.append(df_texts)
+        
         st_empty.image(frame)
 
         #output_video.write(frame)
