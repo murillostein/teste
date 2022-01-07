@@ -18,28 +18,29 @@ video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
 
 #if st.button('Gerar vídeo'):
 
-tfile = tempfile.NamedTemporaryFile(delete=False)
-tfile.write(video_file.read())
 
-vid_capture = cv2.VideoCapture(tfile.name)
-
-#video_bytes = video_file.read()
-
-#st.video(video_bytes)
-
-frame_width = int(vid_capture.get(3))
-frame_height = int(vid_capture.get(4))
-frame_size = (frame_width, frame_height)
 
 # configurando video de saida
-output_video = cv2.VideoWriter('st_test_00.mp4', cv2.VideoWriter_fourcc('M','J','P','G'), 15, frame_size)
+# output_video = cv2.VideoWriter('st_test_00.mp4', cv2.VideoWriter_fourcc('M','J','P','G'), 15, frame_size)
 
 i = 0
 
-st_video = st.empty()
+st_empty = st.empty()
 
 if video_file is not None:
-        
+    
+    tfile = tempfile.NamedTemporaryFile(delete=False)
+    tfile.write(video_file.read())
+
+    vid_capture = cv2.VideoCapture(tfile.name)
+
+    #video_bytes = video_file.read()
+
+    #st.video(video_bytes)
+
+    frame_width = int(vid_capture.get(3))
+    frame_height = int(vid_capture.get(4))
+    frame_size = (frame_width, frame_height)
     while True:
         print(i)
         i += 1
@@ -72,7 +73,8 @@ if video_file is not None:
             # cv2_imshow(frame)
             
         #df_previsoes = df_previsoes.append(df_texts)
+        st_empty.image(frame)
 
-        output_video.write(frame)
+        #output_video.write(frame)
 
-    st_video.video(output_video)
+    #st_video.video(output_video)
