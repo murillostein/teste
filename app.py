@@ -51,10 +51,10 @@ if video_file is not None:
 
         st.write("deu boa com vid_capture.read")
 
-        input_image = Image.open(frame)
+        # input_image = Image.open(frame)
 
         #cv2_imshow(frame)
-        st.image(input_image)
+        st.image(frame)
         if not conectado:
             break
         st.write("nao breakou")
