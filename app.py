@@ -63,8 +63,8 @@ if video_file is not None:
             break
         st.write("nao breakou")
 
-        image = Image.open(frame)
-        resultados = reader.readtext(np.array(image))
+        # image = Image.open(frame)
+        resultados = reader.readtext(frame)
         
         st.write("deu boa com em ler resultados")
         st.write(resultados)
