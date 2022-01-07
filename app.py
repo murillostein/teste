@@ -6,7 +6,7 @@ import cv2
 import easyocr
 import tempfile
 
-
+@st.cache
 def load_model():
     return ocr.Reader(['en'], model_storage_directory='.')
 
