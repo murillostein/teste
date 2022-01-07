@@ -66,7 +66,7 @@ if video_file is not None:
         st.write("nao breakou")
         if i ==1:
             # image = Image.open(frame)
-            reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
+            resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
             
             st.write("deu boa com em ler resultados")
             
