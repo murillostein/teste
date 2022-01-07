@@ -69,7 +69,7 @@ if video_file is not None:
             reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
             
             st.write("deu boa com em ler resultados")
-            st.write(resultados)
+            
             for (bbox, text, prob) in resultados:
 
                 print("{:.4f}: {}".format(prob, text))
@@ -95,7 +95,7 @@ if video_file is not None:
                 
             #df_previsoes = df_previsoes.append(df_texts)
 
-            st_empty.image(frame)
+                st_empty.image(frame)
 
         #output_video.write(frame)
 
