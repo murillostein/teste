@@ -26,7 +26,7 @@ if img is not None:
     input_image = Image.open(img)
 
     # image = Image.open(frame)
-    resultados = reader.readtext(frame)
+    resultados = reader.readtext(np.array(input_image))
     
     st.write("deu boa com em ler resultados")
     st.write(resultados)
@@ -44,9 +44,9 @@ if img is not None:
         # cleanup the txt and draw the box surrounding the text along
         # with the OCR'd text itself
         #text = cleanup_text(text)
-        cv2.rectangle(frame, tl, br, (0, 255, 0), 2)
+        cv2.rectangle(img, tl, br, (0, 255, 0), 2)
         st.write('fez retangulo')
-        cv2.putText(frame, text, (tl[0], tl[1] - 10),
+        cv2.putText(img, text, (tl[0], tl[1] - 10),
         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
         # 
         
@@ -55,7 +55,7 @@ if img is not None:
         
     #df_previsoes = df_previsoes.append(df_texts)
 
-    st_empty.image(frame)
+    st_empty.image(img)
 
     #output_video.write(frame)
 
