@@ -13,7 +13,7 @@ st.title('Identificação de Códigos')
 st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
 
 
-video_file = st.file_uploader("Anexe um vídeo")
+video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
 
 
 #if st.button('Gerar vídeo'):

@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import PIL
+from PIL import Image
 import cv2
 import easyocr as ocr
 
