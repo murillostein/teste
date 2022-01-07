@@ -98,8 +98,8 @@ if video_file is not None:
             #df_previsoes = df_previsoes.append(df_texts)
             
             break
-st.write("output frame")
-st_empty.image(frame)
+    st.write("output frame")
+    st_empty.image(frame)
         #output_video.write(frame)
 
     #st_video.video(output_video)
