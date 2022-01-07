@@ -71,7 +71,7 @@ if video_file is not None:
         # st.write("deu boa com em ler resultados")
         
         if resultados != []:
-            st.write("input frame")
+            #st.write("input frame")
             st.image(frame)
             for (bbox, text, prob) in resultados:
 
@@ -99,7 +99,7 @@ if video_file is not None:
             #df_previsoes = df_previsoes.append(df_texts)
             
             break
-    st.write("output frame")
+    #st.write("output frame")
     st_empty.image(frame_cp)
         #output_video.write(frame)
 
