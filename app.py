@@ -10,7 +10,7 @@ def load_model():
     reader = easyocr.Reader(['en'],model_storage_directory='.')
     return reader 
 
-reader = load_model()
+# reader = load_model()
 
 st.title('Identificação de Códigos')
 
@@ -33,7 +33,7 @@ st_empty = st.empty()
 
 
 if video_file is not None:
-    
+    reader = easyocr.Reader(['en'], gpu=True)
     tfile = tempfile.NamedTemporaryFile(delete=False)
     tfile.write(video_file.read())
 
@@ -64,7 +64,7 @@ if video_file is not None:
         st.write("nao breakou")
 
         # image = Image.open(frame)
-        resultados = reader.readtext(frame)
+        reader.readtext(frame,paragraph=False,rotation_info=[0,0,0])
         
         st.write("deu boa com em ler resultados")
         st.write(resultados)
