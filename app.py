@@ -6,11 +6,12 @@ import cv2
 import easyocr
 import tempfile
 
-def load_model(lang):
-    return ocr.Reader([lang], model_storage_directory='.')
+@st.cache
+def load_model(): 
+    reader = easyocr.Reader(['en'],model_storage_directory='.')
+    return reader 
 
-
-reader = easyocr.Reader(['en'], model_storage_directory='.')
+reader = load_model()
 
 st.title('Identificação de Códigos')
 
