@@ -10,9 +10,8 @@ def load_model(lang):
     return ocr.Reader([lang], model_storage_directory='.')
 
 
-# reader = easyocr.Reader(['en'])
-lang = 'en'
-reader = load_model(lang)
+reader = easyocr.Reader(['en'], model_storage_directory='.')
+
 st.title('Identificação de Códigos')
 
 st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
@@ -63,7 +62,7 @@ if video_file is not None:
         if not conectado:
             break
         st.write("nao breakou")
-        resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0],min_size=110)
+        resultados = reader.readtext(np.array(frame),min_size=110)
         
         st.write("deu boa com em ler resultados")
         st.write(resultados)
