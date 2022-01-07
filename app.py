@@ -87,19 +87,19 @@ if video_file is not None:
                 # with the OCR'd text itself
                 #text = cleanup_text(text)
                 cv2.rectangle(frame, tl, br, (0, 255, 0), 2)
-                st.write('fez retangulo')
+                #st.write('fez retangulo')
                 cv2.putText(frame, text, (tl[0], tl[1] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                 # 
                 
-                st.write('fez texto')
+                #st.write('fez texto')
                 # cv2_imshow(frame)
                 
             #df_previsoes = df_previsoes.append(df_texts)
-            st.write("output frame")
-            st_empty.image(frame)
+            
             break
-
+st.write("output frame")
+st_empty.image(frame)
         #output_video.write(frame)
 
     #st_video.video(output_video)
