@@ -27,11 +27,13 @@ i = 0
 
 st_empty = st.empty()
 
+
 if video_file is not None:
     
     tfile = tempfile.NamedTemporaryFile(delete=False)
     tfile.write(video_file.read())
 
+    st.write("Deu boa")
     vid_capture = cv2.VideoCapture(tfile.name)
 
     #video_bytes = video_file.read()
