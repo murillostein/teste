@@ -1,62 +1,45 @@
-import numpy as np
-import streamlit as st
-from PIL import Image
-import cv2
-import easyocr
-import tempfile
+import easyocr as ocr  #OCR
+import streamlit as st  #Web App
+from PIL import Image #Image Processing
+import numpy as np #Image Processing 
+
+#title
+st.title("Easy OCR - Extract Text from Images")
+
+#subtitle
+st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")
+
+st.markdown("")
+
+#image uploader
+image = st.file_uploader(label = "Upload your image here",type=['png','jpg','jpeg'])
+
 
 @st.cache
 def load_model(): 
-    reader = easyocr.Reader(['en'],model_storage_directory='.')
+    reader = ocr.Reader(['en'],model_storage_directory='.')
     return reader 
 
-reader = load_model()
+reader = load_model() #load model
 
-st.title('Identificação de Códigos')
+if image is not None:
 
-st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
-
-
-img = st.file_uploader("Anexe uma imagem")
-
-st_empty = st.empty()
-st.write("deu boa com fileupload")
-if img is not None:    
-
-    input_image = Image.open(img)
-    st.write("deu boa com PIL")
-    # image = Image.open(frame)
-    resultados = reader.readtext(np.array(input_image))
-    
-    st.write("deu boa com em ler resultados")
-    st.write(resultados)
-    for (bbox, text, prob) in resultados:
-
-        print("{:.4f}: {}".format(prob, text))
-
-        # coordenadas da bounding box do OCR
-        (tl, tr, br, bl) = bbox
-        tl = (int(tl[0]), int(tl[1]))
-        tr = (int(tr[0]), int(tr[1]))
-        br = (int(br[0]), int(br[1]))
-        bl = (int(bl[0]), int(bl[1]))
-
-        # cleanup the txt and draw the box surrounding the text along
-        # with the OCR'd text itself
-        #text = cleanup_text(text)
-        cv2.rectangle(img, tl, br, (0, 255, 0), 2)
-        st.write('fez retangulo')
-        cv2.putText(img, text, (tl[0], tl[1] - 10),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        # 
+    input_image = Image.open(image) #read image
+    st.image(input_image) #display image
+    st.write('deu boa PIL')
+    with st.spinner("🤖 AI is at Work! "):
         
-        st.write('fez texto')
-        # cv2_imshow(frame)
         
-    #df_previsoes = df_previsoes.append(df_texts)
+        result = reader.readtext(np.array(input_image))
+        st.write('deu boa lendo')
+        result_text = [] #empty list for results
 
-    st_empty.image(img)
 
-    #output_video.write(frame)
+        for text in result:
+            result_text.append(text[1])
 
-#st_video.video(output_video)
+        st.write(result_text)
+    #st.success("Here you go!")
+    st.balloons()
+else:
+    st.write("Upload an Image")
