@@ -63,7 +63,7 @@ if video_file is not None:
         if not conectado:
             break
         st.write("nao breakou")
-        resultados = reader.readtext(np.array(frame),min_size=110)
+        resultados = reader.readtext(np.array(frame))
         
         st.write("deu boa com em ler resultados")
         st.write(resultados)
