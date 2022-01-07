@@ -2,4 +2,3 @@ easyocr
 torch
 numpy
 streamlit
-tempfile
