@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import PIL
+from PIL import Image
 import cv2
 import easyocr
 import tempfile
@@ -50,11 +50,15 @@ if video_file is not None:
         conectado, frame = vid_capture.read()
 
         st.write("deu boa com vid_capture.read")
+
+        input_image = Image.open(frame)
+
         #cv2_imshow(frame)
+        st.image(input_image)
         if not conectado:
             break
         st.write("nao breakou")
-        resultados = reader.readtext(frame,paragraph=False,rotation_info=[0,0,0],min_size=110)
+        resultados = reader.readtext(input_image,paragraph=False,rotation_info=[0,0,0],min_size=110)
         
         st.write("deu boa com em ler resultados")
         st.write(resultados)
