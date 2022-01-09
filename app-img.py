@@ -128,7 +128,8 @@ else:
         st.image(input_image) #display image
 
 
-        frame_cp = np.array(input_image).copy()
+        input_img_arr = np.array(input_image)
+        frame_cp = input_img_arr.copy()
         with st.spinner("Imagem em análise"):
             resultados = reader.readtext(frame_cp)
             result_text = [] #empty list for results
@@ -161,5 +162,3 @@ else:
             st.write(result_text)
         #st.success("Here you go!")
         # st.balloons()
-    else:
-        st.write("Anexe uma imagem")
