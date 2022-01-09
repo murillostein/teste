@@ -80,6 +80,7 @@ if formato == 'Vídeo':
                 if resultados != []:
                     #st.write("input frame")
                     st.image(frame)
+                    result_text = [] #empty list for results
                     for (bbox, text, prob) in resultados:
 
                         print("{:.4f}: {}".format(prob, text))
@@ -102,7 +103,7 @@ if formato == 'Vídeo':
                         
                         #st.write('fez texto')
                         # cv2_imshow(frame)
-                        result_text = [] #empty list for results
+                        
 
 
                         # for text in resultados:
@@ -154,7 +155,7 @@ else:
 
             #for text in resultados:
                 result_text.append(text)
-
+            st.image(input_image)
             st.write(result_text)
         #st.success("Here you go!")
         # st.balloons()
