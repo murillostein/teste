@@ -144,9 +144,9 @@ else:
                 # cleanup the txt and draw the box surrounding the text along
                 # with the OCR'd text itself
                 #text = cleanup_text(text)
-                cv2.rectangle(input_image, tl, br, (0, 255, 0), 2)
+                cv2.rectangle(np.array(input_image), tl, br, (0, 255, 0), 2)
                 #st.write('fez retangulo')
-                cv2.putText(input_image, text, (tl[0], tl[1] - 10),
+                cv2.putText(np.array(input_image), text, (tl[0], tl[1] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
             
             
