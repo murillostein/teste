@@ -127,8 +127,10 @@ else:
         input_image = Image.open(image) #read image
         st.image(input_image) #display image
 
+
+        frame_cp = np.array(input_image).copy()
         with st.spinner("Imagem em análise"):
-            resultados = reader.readtext(np.array(input_image))
+            resultados = reader.readtext(frame_cp)
             result_text = [] #empty list for results
             
             for (bbox, text, prob) in resultados:
@@ -145,9 +147,9 @@ else:
                 # cleanup the txt and draw the box surrounding the text along
                 # with the OCR'd text itself
                 #text = cleanup_text(text)
-                cv2.rectangle(np.array(input_image), tl, br, (0, 255, 0), 2)
+                cv2.rectangle(frame_cp, tl, br, (0, 255, 0), 2)
                 #st.write('fez retangulo')
-                cv2.putText(np.array(input_image), text, (tl[0], tl[1] - 10),
+                cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
             
             
@@ -155,7 +157,7 @@ else:
 
             #for text in resultados:
                 result_text.append(text)
-            st.image(input_image)
+            st.image(frame_cp)
             st.write(result_text)
         #st.success("Here you go!")
         # st.balloons()
