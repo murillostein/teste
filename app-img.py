@@ -105,10 +105,10 @@ if formato == 'Vídeo':
                         result_text = [] #empty list for results
 
 
-                        for text in result:
-                            result_text.append(text[1])
+                        # for text in resultados:
+                        result_text.append(text)
 
-                        st.write(result_text)
+                    st.write(result_text)
                         
                     #df_previsoes = df_previsoes.append(df_texts)
                     
@@ -127,17 +127,36 @@ else:
         st.image(input_image) #display image
 
         with st.spinner("Imagem em análise"):
-            
-            
-            result = reader.readtext(np.array(input_image))
+            resultados = reader.readtext(np.array(input_image))
             result_text = [] #empty list for results
+            
+            for (bbox, text, prob) in resultados:
+
+                print("{:.4f}: {}".format(prob, text))
+
+                # coordenadas da bounding box do OCR
+                (tl, tr, br, bl) = bbox
+                tl = (int(tl[0]), int(tl[1]))
+                tr = (int(tr[0]), int(tr[1]))
+                br = (int(br[0]), int(br[1]))
+                bl = (int(bl[0]), int(bl[1]))
+
+                # cleanup the txt and draw the box surrounding the text along
+                # with the OCR'd text itself
+                #text = cleanup_text(text)
+                cv2.rectangle(input_image, tl, br, (0, 255, 0), 2)
+                #st.write('fez retangulo')
+                cv2.putText(input_image, text, (tl[0], tl[1] - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            
+            
 
 
-            for text in result:
-                result_text.append(text[1])
+            #for text in resultados:
+                result_text.append(text)
 
             st.write(result_text)
         #st.success("Here you go!")
-        st.balloons()
+        # st.balloons()
     else:
         st.write("Anexe uma imagem")
