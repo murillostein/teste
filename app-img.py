@@ -17,6 +17,8 @@ st.title('Identificação de Códigos')
 st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
 
 
+formato = st.sidebar.selectbox("Escolha o formato", ['video','imagem'])
+
 video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
 
 
@@ -95,6 +97,13 @@ if video_file is not None:
                 
                 #st.write('fez texto')
                 # cv2_imshow(frame)
+                result_text = [] #empty list for results
+
+
+                for text in result:
+                    result_text.append(text[1])
+
+                st.write(result_text)
                 
             #df_previsoes = df_previsoes.append(df_texts)
             
