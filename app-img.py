@@ -20,7 +20,7 @@ st.write('Aplicação para detecção e leitura de códigos utilizando OCR.')
 formato = st.sidebar.selectbox("Escolha o formato", ['video','imagem'])
 
 
-if formato == video:
+if formato == 'video':
         
     video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
 
