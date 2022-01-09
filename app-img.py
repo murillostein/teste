@@ -131,7 +131,7 @@ else:
         input_img_arr = np.array(input_image)
         frame_cp = input_img_arr.copy()
         with st.spinner("Imagem em análise"):
-            resultados = reader.readtext(frame_cp)
+            resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
             result_text = [] #empty list for results
             
             for (bbox, text, prob) in resultados:
