@@ -53,7 +53,7 @@ if formato == 'Vídeo':
         frame_width = int(vid_capture.get(3))
         frame_height = int(vid_capture.get(4))
         frame_size = (frame_width, frame_height)
-            with st.spinner("Vídeo em análise"):
+        with st.spinner("Vídeo em análise"):
             while True:
                 print(i)
                 
