@@ -32,66 +32,66 @@ def ocr_reader():
 
             vid_capture = cv2.VideoCapture(tfile.name)
 
-            with st.spinner("Vídeo em análise"):
+            #with st.spinner("Vídeo em análise"):
 
-                list = []
-                while True:
-                    print(i)
-                    i += 1
+            list = []
+            while True:
+                print(i)
+                i += 1
 
-                    conectado, frame = vid_capture.read()
-                                        
-                    if not conectado:
-                        break
+                conectado, frame = vid_capture.read()
+                                    
+                if not conectado:
+                    break
 
-                    frame_cp = frame.copy()
+                frame_cp = frame.copy()
 
-                    # aplica modelo ao frame
-                    resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
-                    if resultados != []:
-                    #st.write("input frame")
-                    #st.image(frame)
-                        for (bbox, text, prob) in resultados:
+                # aplica modelo ao frame
+                resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
+                if resultados != []:
+                #st.write("input frame")
+                #st.image(frame)
+                    for (bbox, text, prob) in resultados:
 
-                            print("{:.4f}: {}".format(prob, text))
-                            #st.write(text)
-
-                            # coordenadas da bounding box do OCR
-                            (tl, tr, br, bl) = bbox
-                            tl = (int(tl[0]), int(tl[1]))
-                            tr = (int(tr[0]), int(tr[1]))
-                            br = (int(br[0]), int(br[1]))
-                            bl = (int(bl[0]), int(bl[1]))
-
-                            # cleanup the txt and draw the box surrounding the text along
-                            # with the OCR'd text itself
-                            #text = cleanup_text(text)
-                            cv2.rectangle(frame_cp, tl, br, (0, 255, 0), 2)
-                            #st.write('fez retangulo')
-                            cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-                            # 
-                            
-                            #st.write('fez texto')
-                            # cv2_imshow(frame)
-
-                            #df_previsoes = pd.DataFrame()
-                            #df_previsoes[f'{i}'] = [text]
-                            #st.dataframe(df_previsoes)
-
-                            list.append(str(text))
-
-                        
-                        #break
-                        df_previsoes = pd.DataFrame()
-                        df_previsoes[f'frame: {i}'] = list
-                        st.dataframe(df_previsoes)
-
-                        st.image(frame_cp)
+                        print("{:.4f}: {}".format(prob, text))
                         #st.write(text)
-                        #print("{:.4f}: {}".format(text))
-            #st.write("output frame")
-                st.image(frame_cp)
+
+                        # coordenadas da bounding box do OCR
+                        (tl, tr, br, bl) = bbox
+                        tl = (int(tl[0]), int(tl[1]))
+                        tr = (int(tr[0]), int(tr[1]))
+                        br = (int(br[0]), int(br[1]))
+                        bl = (int(bl[0]), int(bl[1]))
+
+                        # cleanup the txt and draw the box surrounding the text along
+                        # with the OCR'd text itself
+                        #text = cleanup_text(text)
+                        cv2.rectangle(frame_cp, tl, br, (0, 255, 0), 2)
+                        #st.write('fez retangulo')
+                        cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+                        # 
+                        
+                        #st.write('fez texto')
+                        # cv2_imshow(frame)
+
+                        #df_previsoes = pd.DataFrame()
+                        #df_previsoes[f'{i}'] = [text]
+                        #st.dataframe(df_previsoes)
+
+                        list.append(str(text))
+
+                    
+                    #break
+                    df_previsoes = pd.DataFrame()
+                    df_previsoes[f'frame: {i}'] = list
+                    st.dataframe(df_previsoes)
+
+                    st.image(frame_cp)
+                    #st.write(text)
+                    #print("{:.4f}: {}".format(text))
+        #st.write("output frame")
+            st.image(frame_cp)
             
 
     else:
