@@ -7,7 +7,10 @@ import tempfile
 import streamlit as st
 from PIL import Image
 def ocr_reader():
-        
+    
+    st.title('Identificação de caracteres em vídeo')
+
+    st.write('Aplicação para detecção e leitura de caracteres utilizando OCR.')
     formato = st.sidebar.selectbox("Escolha o formato", ['Imagem','Vídeo'])
 
     reader = easyocr.Reader(['en'], gpu=True)
