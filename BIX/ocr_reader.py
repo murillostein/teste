@@ -1,11 +1,12 @@
 import pandas as pd
 import streamlit as st
 #from PIL import Image
-# import cv2
+import cv2
 import easyocr
 import tempfile
 import streamlit as st
 from PIL import Image
+
 def ocr_reader():
     
     st.title('Identificação de caracteres em vídeo')
