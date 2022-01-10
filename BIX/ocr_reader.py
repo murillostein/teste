@@ -33,6 +33,8 @@ def ocr_reader():
             vid_capture = cv2.VideoCapture(tfile.name)
 
             with st.spinner("Vídeo em análise"):
+
+                list = []
                 while True:
                     print(i)
                     i += 1
