@@ -75,9 +75,10 @@ def ocr_reader():
                         list.append(str(text))
 
                     
-                    df_previsoes[f'frame: {i}'] = np.array(list)
-                    st_empty2.dataframe(df_previsoes)
 
+                    df_previsoes = pd.DataFrame()
+                    df_previsoes[f'frame: {i}'] = list
+                    st.dataframe(df_previsoes)
                     st_empty.image(frame_cp)
 
             st_empty.image(frame_cp)
