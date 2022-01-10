@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-#from PIL import Image
 import cv2
 import easyocr
 import tempfile
@@ -21,6 +20,8 @@ def ocr_reader():
 
     st_empty = st.empty()
 
+    st_empty2 = st.empty()
+
     if formato == 'Vídeo':
             
         video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
@@ -37,6 +38,8 @@ def ocr_reader():
             #with st.spinner("Vídeo em análise"):
 
             list = []
+
+            df_previsoes = pd.DataFrame()
             while True:
                 print(i)
                 i += 1
@@ -50,13 +53,11 @@ def ocr_reader():
 
                 # aplica modelo ao frame
                 resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
+
                 if resultados != []:
-                #st.write("input frame")
-                #st.image(frame)
                     for (bbox, text, prob) in resultados:
 
                         print("{:.4f}: {}".format(prob, text))
-                        #st.write(text)
 
                         # coordenadas da bounding box do OCR
                         (tl, tr, br, bl) = bbox
@@ -70,27 +71,17 @@ def ocr_reader():
                         # escreve previsão na imagem
                         cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-                        # 
-                        
-                        #st.write('fez texto')
-                        # cv2_imshow(frame)
-
-                        #df_previsoes = pd.DataFrame()
-                        #df_previsoes[f'{i}'] = [text]
-                        #st.dataframe(df_previsoes)
 
                         list.append(str(text))
 
                     
-                    #break
-                    df_previsoes = pd.DataFrame()
-                    df_previsoes[f'frame: {i}'] = list
-                    st.dataframe(df_previsoes)
+                    df_previsoes[f'frame: {i}'].append(list)
+                    st_empty2.dataframe(df_previsoes)
 
                     st_empty.image(frame_cp)
+
             st_empty.image(frame_cp)
             
-
     else:
         image = st.file_uploader(label = "Anexe uma imagem",type=['png','jpg','jpeg'])
 
