@@ -19,6 +19,8 @@ def ocr_reader():
     # carrega modelo ocr
     reader = easyocr.Reader(['en'], gpu=True)
 
+    st_empty = st.empty()
+
     if formato == 'Vídeo':
             
         video_file = st.file_uploader("Anexe um vídeo",type = ['mp4'])
@@ -63,11 +65,9 @@ def ocr_reader():
                         br = (int(br[0]), int(br[1]))
                         bl = (int(bl[0]), int(bl[1]))
 
-                        # cleanup the txt and draw the box surrounding the text along
-                        # with the OCR'd text itself
-                        #text = cleanup_text(text)
+                        # desenha retangulo na imagem
                         cv2.rectangle(frame_cp, tl, br, (0, 255, 0), 2)
-                        #st.write('fez retangulo')
+                        # escreve previsão na imagem
                         cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                         # 
@@ -87,11 +87,8 @@ def ocr_reader():
                     df_previsoes[f'frame: {i}'] = list
                     st.dataframe(df_previsoes)
 
-                    st.image(frame_cp)
-                    #st.write(text)
-                    #print("{:.4f}: {}".format(text))
-        #st.write("output frame")
-            st.image(frame_cp)
+                    st_empty.image(frame_cp)
+            st_empty.image(frame_cp)
             
 
     else:
@@ -129,5 +126,6 @@ def ocr_reader():
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
                     list.append(text)
+
                 st.image(frame_cp)
                 st.dataframe(list)
