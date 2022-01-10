@@ -110,7 +110,7 @@ def ocr_reader():
                 # aplica modelo
                 resultados = reader.readtext(frame_cp,paragraph=False,rotation_info=[0,0,0])
 
-                result_text = []
+                list = []
                 
                 for (bbox, text, prob) in resultados:
 
@@ -128,6 +128,6 @@ def ocr_reader():
                     cv2.putText(frame_cp, text, (tl[0], tl[1] - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
-                    result_text.append(text)
+                    list.append(text)
                 st.image(frame_cp)
-                st.write(result_text)
+                st.dataframe(list)
