@@ -5,8 +5,8 @@ def home():
     st.title('')               
     st.title('Leitura de caracteres')
     st.subheader('Faça leitura de caracteres através de imagens ou vídeos!')
-    image = Image.open('images/home.png')
-    st.image(image, use_column_width=True)
+    #image = Image.open('images/home.png')
+    #st.image(image, use_column_width=True)
 
     st.subheader('Para quais aplicações posso utilizar o leitor de caracteres?')
     st.write('Para qualquer situação onde se queira fazer leitura de caracteres através de imagens ou de vídeos!')
