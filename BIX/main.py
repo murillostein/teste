@@ -23,8 +23,8 @@ def main():
 
     #style.spaces_sidebar(15)
     st.sidebar.write('https://www.bixtecnologia.com/')
-    image = Image.open('images/logo_sidebar_sem_fundo.png')
-    st.sidebar.image(image, use_column_width=True)
+    #image = Image.open('images/logo_sidebar_sem_fundo.png')
+    # st.sidebar.image(image, use_column_width=True)
 
     #st.image(image, use_column_width=True)  
     
